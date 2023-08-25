@@ -10,7 +10,7 @@ import { HEROES } from '../mock-heroes'
 export class HeroesComponent implements OnInit {  
   heroes: Hero[] = HEROES;
   selectedHero?: Hero;
-  hero = { id: 20, name: 'Tornado' };
+  test: number = 1;
   
   onSelect(hero: Hero) {
     this.selectedHero = hero;
