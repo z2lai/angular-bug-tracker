@@ -1,7 +1,7 @@
 <div class="vh-100 d-flex flex-column">
   <nav class="navbar navbar-dark bg-primary">
     <div class="container">
-      <a class="navbar-brand">Todoist Clone</a>
+      <a href="/" class="navbar-brand">Todoist Clone</a>
       <button class="btn btn-primary" type="button">Add Task</button>
     </div>
   </nav>
@@ -11,21 +11,22 @@
       <nav class="c-sidebar col-2 bg-dark text-white">
         <ul class="nav mt-5 flex-column nav-pills">
           <li class="nav-item">
-            <a routerLink="/heroes" class="nav-link link-light active">Heroes</a>
+            <a routerLink="/dashboard" class="nav-link link-light active">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link link-light" href="#">Project 2</a>
+            <a routerLink="/heroes" class="nav-link link-light" href="#">Heroes</a>
           </li>
           <li class="nav-item">
             <a class="nav-link link-light" href="#">Project 3</a>
           </li>
         </ul>
+        <hr>
+        <bt-messages></bt-messages>
       </nav>
 
       <div class="col-10">
         <h1>{{title}}</h1>
         <router-outlet></router-outlet>
-        <bt-messages></bt-messages>
       </div>
     </div>
   </div>
