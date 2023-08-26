@@ -5,7 +5,10 @@
       <span class="badge">{{hero.id}}</span>
       <span class="name">{{hero.name}}</span>
     </button>
+    <a routerLink="/hero/{{hero.id}}">
+      {{hero.name}}
+    </a>
   </li>
 </ul>
-<h2>{{test}}</h2>
-<bt-hero-detail [hero]="selectedHero" [testInput]="test"></bt-hero-detail>
+<h2>{{selectedHeroName}}</h2>
+<bt-hero-detail [hero]="selectedHero" [testInput]="selectedHeroName"></bt-hero-detail>
