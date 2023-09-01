@@ -15,18 +15,26 @@ export class HeroService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService
-  ) {}
+  ) { }
 
   getHeroes(): Observable<Hero[]> {
-    return this.http
-      .get<Hero[]>(this.heroesUrl)
-      .pipe(catchError(this.handleError<Hero[]>('getHeroes', [])));
+    return this.http.get<Hero[]>(this.heroesUrl).pipe(
+      tap(_ => this.log('fetched heroes')),
+      catchError(this.handleError<Hero[]>('getHeroes', []))
+    );
   }
 
+  /** GET hero by id. Will 404 if id not found */
   getHero(id: number): Observable<Hero> {
-    const hero = HEROES.find((h) => h.id === id)!;
-    this.messageService.add(`HeroService: fetched hero id=${id}`);
-    return of(hero);
+    const url = `${this.heroesUrl}/${id}`;
+    
+    // const hero = HEROES.find((h) => h.id === id)!;
+    // this.messageService.add(`HeroService: fetched hero id=${id}`);
+    // return of(hero);
+    return this.http.get<Hero>(url).pipe(
+      tap(_ => this.log(`HeroService: fetched hero id=${id}`)),
+      catchError(this.handleError<Hero>(`getHero id=${id}`))
+    )
   }
 
   /**
@@ -45,8 +53,8 @@ export class HeroService {
       this.log(`${operation} failed: ${error.message}`);
 
       return of(result as T);
-    }
-  } 
+    };
+  }
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
