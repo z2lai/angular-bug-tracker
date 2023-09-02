@@ -14,6 +14,8 @@
     <a routerLink="/hero/{{hero.id}}">
       {{hero.name}}
     </a>
+    <button type="button" class="delete" title="delete hero"
+      (click)="deleteHero(hero)">x</button>
   </li>
 </ul>
 
