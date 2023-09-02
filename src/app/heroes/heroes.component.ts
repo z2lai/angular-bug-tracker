@@ -13,6 +13,7 @@ export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
   selectedHero?: Hero;
   selectedHeroName: string = '';
+  heroName: string = '';
   
   constructor(private heroService: HeroService, private messageService: MessageService) { }
 
@@ -29,5 +30,12 @@ export class HeroesComponent implements OnInit {
   getHeroes(): void {
     this.heroService.getHeroes()
       .subscribe(heroes => this.heroes = heroes);
+  }
+
+  addHero(heroName: string): void {
+    heroName = heroName.trim();
+    if (!heroName) return;
+    this.heroService.addHero({ name: heroName } as Hero)
+      .subscribe(hero => this.heroes.push(hero));
   }
 }

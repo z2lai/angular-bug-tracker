@@ -1,4 +1,10 @@
 <h2>My Heroes</h2>
+<div>
+  <label for="new-hero">Hero name:</label>
+  <input id="new-hero" #heroName />
+  <button type="button" (click)="addHero(heroName.value)">Add</button>
+</div>
+
 <ul class="heroes">
   <li *ngFor="let hero of heroes">
     <button type="button" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
@@ -10,5 +16,7 @@
     </a>
   </li>
 </ul>
+
 <h2>{{selectedHeroName}}</h2>
 <bt-hero-detail [hero]="selectedHero" [testInput]="selectedHeroName"></bt-hero-detail>
+
